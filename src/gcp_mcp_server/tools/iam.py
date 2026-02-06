@@ -45,8 +45,21 @@ def add_iam_binding(
     get_request = iam_policy_pb2.GetIamPolicyRequest(resource=resource)
     policy = client.get_iam_policy(request=get_request)
 
-    new_binding = policy_pb2.Binding(role=role, members=[member])
-    policy.bindings.append(new_binding)
+    # Check if the role already exists in the policy
+    existing_binding = None
+    for binding in policy.bindings:
+        if binding.role == role:
+            existing_binding = binding
+            break
+
+    if existing_binding:
+        # Add member to existing binding if not already present
+        if member not in existing_binding.members:
+            existing_binding.members.append(member)
+    else:
+        # Create new binding for this role
+        new_binding = policy_pb2.Binding(role=role, members=[member])
+        policy.bindings.append(new_binding)
 
     set_request = iam_policy_pb2.SetIamPolicyRequest(
         resource=resource, policy=policy

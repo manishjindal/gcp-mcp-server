@@ -23,12 +23,12 @@ def list_instances(
             "machine_type": instance.machine_type.split("/")[-1],
             "zone": zone,
             "internal_ip": (
-                instance.network_interfaces[0].network_i_p
+                instance.network_interfaces[0].network_ip
                 if instance.network_interfaces
                 else None
             ),
             "external_ip": (
-                instance.network_interfaces[0].access_configs[0].nat_i_p
+                instance.network_interfaces[0].access_configs[0].nat_ip
                 if instance.network_interfaces
                 and instance.network_interfaces[0].access_configs
                 else None
