@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "gcp": {
+      "command": "python",
+      "args": ["-m", "gcp_mcp_server.server"],
+      "type": "stdio"
+    }
+  }
+}
