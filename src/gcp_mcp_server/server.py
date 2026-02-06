@@ -8,7 +8,7 @@ from gcp_mcp_server.tools import gke, gcs, compute, iam
 
 mcp = FastMCP(
     "gcp-mcp-server",
-    description="An MCP server for performing Google Cloud Platform operations",
+    instructions="An MCP server for performing Google Cloud Platform operations",
 )
 
 
